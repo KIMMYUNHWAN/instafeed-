@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLAY CLUB – Card Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ────────────────────────────────
+     HEADER
+──────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <span class="header-logo">⬡ CLAY CLUB</span>
+    <span class="header-badge">Card Generator</span>
+  </div>
+</header>
+
+<!-- ────────────────────────────────
+     MAIN LAYOUT
+──────────────────────────────── -->
+<main class="main-layout">
+
+  <!-- ── LEFT : PREVIEW ── -->
+  <section class="preview-panel" aria-label="카드 미리보기">
+    <div class="preview-wrapper">
+      <div class="card-frame" id="cardFrame">
+
+        <!-- TOP SECTION -->
+        <div class="card-top">
+          <div class="card-top-meta">
+            <span class="card-index" id="previewIndex">06&nbsp;FILE NAME</span>
+          </div>
+          <h1 class="card-title" id="previewTitle">Free Metallic Package Mockup</h1>
+        </div>
+
+        <!-- IMAGE SECTION -->
+        <div class="card-image-area" id="cardImageArea">
+          <label class="image-drop-zone" id="imageDropZone" for="imageFileInput" title="이미지 업로드">
+            <img
+              src="https://images.unsplash.com/photo-1614624532983-4ce03382d63d?w=600&q=80"
+              alt="Product Mockup"
+              id="previewImage"
+              class="card-preview-img"
+            />
+            <div class="image-overlay">
+              <i class="fa fa-camera"></i>
+              <span>이미지 변경</span>
+            </div>
+          </label>
+          <input type="file" id="imageFileInput" accept="image/*" hidden />
+        </div>
+
+        <!-- BOTTOM SECTION -->
+        <div class="card-bottom">
+          <!-- Source Label -->
+          <p class="card-source" id="previewSource">ls.graphics</p>
+
+          <!-- Color chips row -->
+          <div class="card-color-row" id="previewColorRow">
+            <!-- chips rendered by JS -->
+          </div>
+
+          <!-- Link -->
+          <div class="card-link-box" id="previewLinkBox">
+            <span id="previewLink">https://www.ls.graphics/assets/free-metallic-package-mockup-a1b24</span>
+          </div>
+
+          <!-- Footer text -->
+          <p class="card-footer-text" id="previewFooter">VARRIS MANSURI</p>
+        </div>
+
+      </div><!-- /card-frame -->
+    </div><!-- /preview-wrapper -->
+
+    <!-- Download button -->
+    <button class="btn-download" id="btnDownload">
+      <i class="fa fa-download"></i> 카드 이미지 저장
+    </button>
+  </section>
+
+  <!-- ── RIGHT : DASHBOARD ── -->
+  <section class="dashboard-panel" aria-label="설정 대시보드">
+    <div class="dashboard-inner">
+
+      <h2 class="dash-heading">
+        <i class="fa fa-sliders"></i> 카드 편집
+      </h2>
+
+      <!-- ── Block 1 : TOP ── -->
+      <div class="dash-block">
+        <div class="dash-block-title">
+          <span class="dash-num">01</span> 상단 정보
+        </div>
+
+        <label class="form-label">파일 번호 / 레이블
+          <span class="form-hint">예: 06 FILE NAME</span>
+        </label>
+        <input
+          type="text"
+          id="inputIndex"
+          class="form-input"
+          placeholder="06 FILE NAME"
+          value="06 FILE NAME"
+        />
+
+        <label class="form-label">상품명
+          <span class="form-hint">카드 제목으로 표시됩니다</span>
+        </label>
+        <input
+          type="text"
+          id="inputTitle"
+          class="form-input"
+          placeholder="Free Metallic Package Mockup"
+          value="Free Metallic Package Mockup"
+        />
+      </div>
+
+      <!-- ── Block 2 : IMAGE ── -->
+      <div class="dash-block">
+        <div class="dash-block-title">
+          <span class="dash-num">02</span> 이미지
+        </div>
+
+        <label class="form-label">상품 이미지 업로드</label>
+        <label class="upload-btn" for="imageFileInput">
+          <i class="fa fa-upload"></i> 이미지 선택 / 교체
+        </label>
+        <p class="upload-hint" id="uploadHint">JPG · PNG · WEBP 지원</p>
+      </div>
+
+      <!-- ── Block 3 : SOURCE ── -->
+      <div class="dash-block">
+        <div class="dash-block-title">
+          <span class="dash-num">03</span> 출처 레이블
+        </div>
+        <label class="form-label">출처 텍스트</label>
+        <input
+          type="text"
+          id="inputSource"
+          class="form-input"
+          placeholder="ls.graphics"
+          value="ls.graphics"
+        />
+      </div>
+
+      <!-- ── Block 4 : COLORS ── -->
+      <div class="dash-block">
+        <div class="dash-block-title">
+          <span class="dash-num">04</span> 컬러 칩
+          <span class="form-hint" style="font-weight:400">최대 6개</span>
+        </div>
+
+        <div class="color-input-row" id="colorInputRow">
+          <!-- dynamic color inputs -->
+        </div>
+
+        <button class="btn-add-color" id="btnAddColor">
+          <i class="fa fa-plus"></i> 컬러 추가
+        </button>
+      </div>
+
+      <!-- ── Block 5 : LINK ── -->
+      <div class="dash-block">
+        <div class="dash-block-title">
+          <span class="dash-num">05</span> 링크 주소
+        </div>
+        <label class="form-label">URL 입력</label>
+        <input
+          type="url"
+          id="inputLink"
+          class="form-input"
+          placeholder="https://example.com/product"
+          value="https://www.ls.graphics/assets/free-metallic-package-mockup-a1b24"
+        />
+      </div>
+
+      <!-- ── Block 6 : FOOTER TEXT ── -->
+      <div class="dash-block">
+        <div class="dash-block-title">
+          <span class="dash-num">06</span> 하단 텍스트
+        </div>
+        <label class="form-label">크레딧 / 브랜드명</label>
+        <input
+          type="text"
+          id="inputFooter"
+          class="form-input"
+          placeholder="VARRIS MANSURI"
+          value="VARRIS MANSURI"
+        />
+      </div>
+
+    </div><!-- /dashboard-inner -->
+  </section>
+
+</main>
+
+<!-- html2canvas for download -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
